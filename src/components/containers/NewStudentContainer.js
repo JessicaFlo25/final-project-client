@@ -15,12 +15,16 @@ import { addStudentThunk } from '../../store/thunks';
 
 class NewStudentContainer extends Component {
   // Initialize state
+  //uodated model, udpdate here as well to include those fields
   constructor(props){
     super(props);
     this.state = {
       firstname: "", 
       lastname: "", 
-      campusId: null, 
+      email: "",
+      imageURL: "",
+      gpa: null, 
+      campusId: null,
       redirect: false, 
       redirectId: null
     };
@@ -36,10 +40,13 @@ class NewStudentContainer extends Component {
   // Take action after user click the submit button
   handleSubmit = async event => {
     event.preventDefault();  // Prevent browser reload/refresh after submit.
-
+    //grab information in fields to pass along to the database
     let student = {
         firstname: this.state.firstname,
         lastname: this.state.lastname,
+        email: this.state.email,
+        imageURL: this.state.imageURL,
+        gpa: this.state.gpa,
         campusId: this.state.campusId
     };
     
@@ -49,7 +56,10 @@ class NewStudentContainer extends Component {
     // Update state, and trigger redirect to show the new student
     this.setState({
       firstname: "", 
-      lastname: "", 
+      lastname: "",
+      email: "", // Reset email field
+      imageURL: "", // Reset imageURL field
+      gpa: null, // Reset gpa field
       campusId: null, 
       redirect: true, 
       redirectId: newStudent.id

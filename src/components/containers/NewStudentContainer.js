@@ -45,9 +45,9 @@ class NewStudentContainer extends Component {
         firstname: this.state.firstname,
         lastname: this.state.lastname,
         email: this.state.email,
-        imageurl: this.state.imageURL,
+        imageurl: this.state.imageurl,
         gpa: this.state.gpa,
-        campusid: this.state.campusId
+        campusid: this.state.campusid
     };
     
     // Add new student in back-end database

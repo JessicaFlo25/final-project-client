@@ -22,9 +22,9 @@ class NewStudentContainer extends Component {
       firstname: "", 
       lastname: "", 
       email: "",
-      imageURL: "",
+      imageurl: "",
       gpa: null, 
-      campusId: null,
+      campusid: null,
       redirect: false, 
       redirectId: null
     };
@@ -45,9 +45,9 @@ class NewStudentContainer extends Component {
         firstname: this.state.firstname,
         lastname: this.state.lastname,
         email: this.state.email,
-        imageURL: this.state.imageURL,
+        imageurl: this.state.imageURL,
         gpa: this.state.gpa,
-        campusId: this.state.campusId
+        campusid: this.state.campusId
     };
     
     // Add new student in back-end database
@@ -58,9 +58,9 @@ class NewStudentContainer extends Component {
       firstname: "", 
       lastname: "",
       email: "", // Reset email field
-      imageURL: "", // Reset imageURL field
+      imageurl: "", // Reset imageURL field
       gpa: null, // Reset gpa field
-      campusId: null, 
+      campusid: null, 
       redirect: true, 
       redirectId: newStudent.id
     });

@@ -7,6 +7,7 @@ It constructs a React component to display the new student page.
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { useEffect } from 'react';
 
 // Create styling for the input form
 const useStyles = makeStyles( () => ({
@@ -35,9 +36,18 @@ const useStyles = makeStyles( () => ({
 }));
 
 const NewStudentView = (props) => {
-  const {handleChange, handleSubmit } = props;
+  const { handleChange, handleSubmit, campusId } = props;
+  useEffect(() => {
+    if (campusId && campusId !== null) {
+      handleChange({
+        target: {
+          name: 'campusId',
+          value: campusId.campus_id,
+        },
+      });
+    }
+  }, [campusId, handleChange]);
   const classes = useStyles();
-
   // Render a New Student view with an input form
   return (
     <div>
@@ -52,38 +62,34 @@ const NewStudentView = (props) => {
           </div>
           <form style={{textAlign: 'center'}} onSubmit={(e) => handleSubmit(e)}>
             <label style= {{color:'#11153e', fontWeight: 'bold'}}>First Name: </label>
-            <input type="text" name="firstname" required onChange ={(e) => handleChange(e)} />
+            <input type="text" name="firstname" onChange ={(e) => handleChange(e)} />
             <br/>
             <br/>
 
             <label style={{color:'#11153e', fontWeight: 'bold'}}>Last Name: </label>
-            <input type="text" name="lastname" required onChange={(e) => handleChange(e)} />
-            <br/>
-            <br/>
-            
-            {/* added email */}
-            <label style={{ color: '#11153e', fontWeight: 'bold' }}>Email: </label>
-            <input type="email" name="email" required onChange={(e) => handleChange(e)} />
+            <input type="text" name="lastname" onChange={(e) => handleChange(e)} />
             <br/>
             <br/>
 
-            {/* added imageurl */}
-            <label style={{ color: '#11153e', fontWeight: 'bold' }}>Image URL: </label>
-            <input type="text" name="imageurl" onChange={(e) => handleChange(e)} />
+            <label style={{color:'#11153e', fontWeight: 'bold'}}>Email: </label>
+            <input type="text" name="email" onChange={(e) => handleChange(e)} />
             <br/>
             <br/>
 
-            {/* gpa */}
-            <label style={{ color: '#11153e', fontWeight: 'bold'}}>GPA: </label>
-            <input type="number" step="0.1" min="0" max="4" name="gpa" onChange={(e) => handleChange(e)} />
+            <label style={{color:'#11153e', fontWeight: 'bold'}}>Image URL: </label>
+            <input type="text" name="imageURL" onChange={(e) => handleChange(e)} />
             <br/>
             <br/>
 
-            <label style={{color:'#11153e', fontWeight: 'bold'}}>Campus Id: </label>
-            <input type="text" name="campusId" onChange={(e) => handleChange(e)} />
+            <label style={{color:'#11153e', fontWeight: 'bold'}}>GPA: </label>
+            <input type="text" name="gpa" onChange={(e) => handleChange(e)} />
             <br/>
             <br/>
 
+            <label style={{color:'#11153e', fontWeight: 'bold'}}>Campus ID: </label>
+            <input type="text" defaultValue={campusId && campusId.campus_id !== null ? campusId.campus_id : ''} name="campusId" onChange={(e) => handleChange(e)} />
+            <br/>
+            <br/>
             <Button variant="contained" color="primary" type="submit">
               Submit
             </Button>

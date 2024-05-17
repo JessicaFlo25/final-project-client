@@ -2,9 +2,10 @@
 import Header from './Header';
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchStudentThunk, editStudentThunk } from "../../store/thunks";
-import { EditStudentView } from "../views";
+import EditStudentView from '../views/EditStudentView';
 import { Redirect } from 'react-router-dom';
+import { useEffect } from 'react';
+import { editStudentThunk, fetchStudentThunk } from '../../store/thunks';
 
 
 class EditStudentContainer extends Component {
@@ -16,14 +17,14 @@ class EditStudentContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          redirect:null
+          redirect:false
         };
       }
 
       //handler that matches input with key and value
-      handleChange = (e) => {
+      handleChange = event => {
             this.setState({
-            [e.target.name]: e.target.value,
+            [event.target.name]: event.target.value,
             });
         };
 
@@ -44,15 +45,17 @@ class EditStudentContainer extends Component {
         this.setState({redirect:true});
     };
     //display 
-    render(){
-        return(
+    render() {
+        const { student } = this.props;
+
+        if (this.state.redirect) {
+            return (<Redirect to={`/students`} />)
+        }
+
+        return (
             <div>
-                <Header/>
-                <EditStudentView
-                student={this.props.student}
-                handleSubmit={this.handleSubmit}
-                handleChange={this.handleChange}/>
-            {this.state.redirect && (<Redirect to={`/students`} />)}
+                <Header />
+                <EditStudentView campusId = {this.props.location.query} student={student} handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
             </div>
         );
     }

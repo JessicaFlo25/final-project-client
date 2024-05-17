@@ -4,9 +4,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import EditStudentView from '../views/EditStudentView';
 import { Redirect } from 'react-router-dom';
-import { useEffect } from 'react';
 import { editStudentThunk, fetchStudentThunk } from '../../store/thunks';
-
 
 class EditStudentContainer extends Component {
     componentDidMount(){
@@ -24,16 +22,15 @@ class EditStudentContainer extends Component {
       //handler that matches input with key and value
       handleChange = event => {
             this.setState({
-            [event.target.name]: event.target.value,
+                [event.target.name]: event.target.value,
             });
         };
 
         //takes care of new entered info on the form for a student
-        handleSubmit = async (e) => {
-            e.preventDefault();
+        handleSubmit = async (event) => {
+            event.preventDefault();
+            let {student} = this.props; 
         
-        let {student} = this.props; 
-        //student entries we will be updating
         student = {
             firstname: this.state.firstname,
             lastname: this.state.lastname,
@@ -42,8 +39,10 @@ class EditStudentContainer extends Component {
         };
 
         await this.props.editStudent(student);
-        this.setState({redirect:true});
-    };
+        this.setState({
+            redirect:true
+        });
+    }
     //display 
     render() {
         const { student } = this.props;

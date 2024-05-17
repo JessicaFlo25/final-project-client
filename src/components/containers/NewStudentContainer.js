@@ -42,7 +42,7 @@ class NewStudentContainer extends Component {
         firstname: this.state.firstname,
         lastname: this.state.lastname,
         email: this.state.email,
-        imageurl: this.state.imageurl,
+        imageurl: this.state.imageURL,
         gpa: this.state.gpa,
         campusId: this.state.campusId
     };

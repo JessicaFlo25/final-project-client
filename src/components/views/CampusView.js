@@ -13,10 +13,10 @@ const CampusView = (props) => {
   // Render a single Campus view with list of its students
   return (
     <div>
-      <img src = {campus.imageURL} style={{width: '50%', height: 'auto', objectFit: 'scale-down'}} alt={campus.name}></img>
+      <img src = {campus.imageURL} style={{width: '30%', height: 'auto', borderRadius:"30px", margin:'30px'}} alt={campus.name}></img>
       <h1>{campus.name}</h1>
-      <p>{campus.address}</p>
-      <p>{campus.description}</p>
+      <h4>{campus.address}</h4>
+      <h4>{campus.description}</h4>
       {campus.students.length > 0 ?
         (
         campus.students.map(student => {
@@ -26,7 +26,7 @@ const CampusView = (props) => {
               <Link to={`/student/${student.id}`}>
                 <h2>Student: {name}</h2>
               </Link>
-              <button onClick={() => deleteStudent(student)}>Unenroll Student</button>
+              <button style={{cursor:"pointer", width:"200px", margin:"10px", backgroundColor:"black", color:"white", borderRadius:"30px", padding:"10px"}} onClick={() => deleteStudent(student)}>Unenroll Student</button>
             </div>
           );
         })
@@ -38,15 +38,15 @@ const CampusView = (props) => {
         pathname: `/newstudent`,
         query: {campus_id}
         }}>
-        <button>Enroll New Student</button>
+        <button style={{cursor:"pointer", width:"200px", margin:"10px", backgroundColor:"black", color:"white", borderRadius:"30px", padding:"10px"}}>Enroll New Student</button>
       </Link>
       <Link to={{
         pathname: `/students`,
         query: {campus_id}
         }}>
-        <button>Enroll Existing Student</button>
+        <button style={{cursor:"pointer", width:"200px", margin:"10px", backgroundColor:"black", color:"white", borderRadius:"30px", padding:"10px"}}>Enroll Existing Student</button>
       </Link>
-      <button onClick={handleDelete}>Delete Campus</button>
+      <button style={{cursor:"pointer", width:"200px", margin:"10px", backgroundColor:"black", color:"white", borderRadius:"30px", padding:"10px"}} onClick={handleDelete}>Delete Campus</button>
     </div>
   );
 };

@@ -5,16 +5,17 @@ The Views component is responsible for rendering web page with data provided by 
 It constructs a React component to display the all students view page.
 ================================================== */
 import { Link } from "react-router-dom";
+import Button from '@material-ui/core/Button';
 
 const AllStudentsView = (props) => {
   const {students, deleteStudent} = props;
   // If there is no student, display a message
   if (!students.length) {
     return (
-    <div>
+    <div style={{paddingTop:"1em"}}>
       <p>There are no students.</p>
       <Link to={`newstudent`}>
-        <button>Add New Student</button>
+        <Button style={{color:"blue", backgroundColor:"brown"}}>Add New Student</Button>
       </Link>
     </div>
     );
@@ -32,7 +33,14 @@ const AllStudentsView = (props) => {
               <Link to={`/student/${student.id}`}>
                 <h2>{name}</h2>
               </Link>
-              <button onClick={() => deleteStudent(student.id)}>Delete</button>
+              <img
+                src={student.imageurl || "https://static1.cbrimages.com/wordpress/wp-content/uploads/2020/11/Spongebob-Sandy.png"}  
+                style={{ maxWidth: '100%', maxHeight: '100px', borderRadius:'20%', height:'auto', maxWidth:'100%' }} 
+              />
+              <br/>
+              <br/>
+              <hr/>
+              <Button style={{color:"blue", backgroundColor:"brown"}} onClick={() => deleteStudent(student.id)}>Delete</Button>
               <hr/>
             </div>
           );
@@ -40,7 +48,7 @@ const AllStudentsView = (props) => {
       )}
       <br/>
       <Link to={`/newstudent`}>
-        <button>Add New Student</button>
+        <Button style={{color:"blue", backgroundColor:"brown"}}>Add New Student</Button>
       </Link>
       <br/><br/>
     </div>

@@ -25,26 +25,29 @@ const AllCampusesView = (props) => {
     <div>
       <h1>All Campuses</h1>
 
+      <Link to={`/newcampus`}>
+        <button style={{cursor:"pointer", width:"200px", margin:"10px", backgroundColor:"black", color:"white", borderRadius:"30px", padding:"10px"}}>Add New Campus</button>
+      </Link>
+
       {props.allCampuses.map((campus) => (
         <div key={campus.id}>
+          
+          <img src={campus.imageURL} style={{ width: '30%', height: 'auto', borderRadius: "30px" }}></img>
           <Link to={`/campus/${campus.id}`}>
             <h2>{campus.name}</h2>
           </Link>
-          <img src={campus.imageURL} style={{ width: '50%', height: 'auto' }}></img>
-          <h4>campus id: {campus.id}</h4>
-          <p>{campus.address}</p>
-          <p>{campus.description}</p>
-          <button onClick={() => props.deleteCampus(campus.id)}>Delete</button>
+          <h4>Campus ID: {campus.id}</h4>
+          <h4>{campus.address}</h4>
+          <h4>{campus.description}</h4>
+          <button onClick={() => props.deleteCampus(campus.id)} style={{cursor:"pointer", width:"100px", margin:"10px", backgroundColor:"black", color:"white", borderRadius:"30px", padding:"10px"}}>Delete</button>
           <Link to={`/editcampus/${campus.id}`}>
-            <button>Edit Campus</button>
+            <button style={{cursor:"pointer", width:"100px", margin:"10px", backgroundColor:"black", color:"white", borderRadius:"30px", padding:"10px"}}>Edit</button>
           </Link>
-          <hr />
+
         </div>
       ))}
       <br />
-      <Link to={`/newcampus`}>
-        <button>Add New Campus</button>
-      </Link>
+
       <br /><br />
     </div>
   );

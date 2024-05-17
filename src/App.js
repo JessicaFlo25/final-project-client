@@ -10,12 +10,9 @@ import {
   AllCampusesContainer,
   AllStudentsContainer,
   NewStudentContainer,
-// newly added
   NewCampusContainer,
   EditStudentContainer,
-  EnrollNewStudentContainer,
-  EditCampusContainer,
-  EnrollExistingStudentContainer,
+  EditCampusContainer
 } from './components/containers';
 
 // if you create separate components for adding/editing 
@@ -28,20 +25,17 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={HomePageContainer} />
         <Route exact path="/campuses" component={AllCampusesContainer} />
+        <Route exact path="/newcampus" component={NewCampusContainer} />
         <Route exact path="/campus/:id" component={CampusContainer} />
         <Route exact path="/students" component={AllStudentsContainer} />
         <Route exact path="/newstudent" component={NewStudentContainer} />
         <Route exact path="/student/:id" component={StudentContainer} />
-        {/* newly added routes, gives the url path and "calls" the componenet needed  */}
-        <Route exact path="/newcampus" component={NewCampusContainer} />
-        <Route exact path="/editcampus/:id" component={EditCampusContainer} />
         <Route exact path="/editstudent/:id" component={EditStudentContainer} />
-        <Route exact path="/:id/enrollnew" component={EnrollNewStudentContainer} />
-        <Route exact path="/enrollexisting" component={EnrollExistingStudentContainer} />
-
+        <Route exact path="/editcampus/:id" component={EditCampusContainer} />
       </Switch>        
     </div>
   );
 }
 
 export default App;
+

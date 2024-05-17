@@ -17,12 +17,6 @@ class StudentContainer extends Component {
     //getting student ID from url
     this.props.fetchStudent(this.props.match.params.id);
   }
-  //recieving a student id that will then be used with backend to remove
-  //a student from the datatable
-  deleteStudent = async(studentId) => {
-    await this.props.deleteStudent(studentId);
-    this.setState({redirect: true});
-  }
 
   //if redirect is true, will display students
   render() {

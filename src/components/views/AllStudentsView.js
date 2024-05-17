@@ -25,6 +25,10 @@ const AllStudentsView = (props) => {
     <div>
       <h1>All Students</h1>
 
+      <Link to={`/newstudent`}>
+        <button style={{cursor:"pointer", width:"200px", margin:"10px", backgroundColor:"black", color:"white", borderRadius:"30px", padding:"10px"}}>Add New Student</button>
+      </Link>
+
       {students.map((student) => {
         let name = student.firstname + " " + student.lastname;
         return (
@@ -32,9 +36,9 @@ const AllStudentsView = (props) => {
             <Link to={`/student/${student.id}`}>
               <h2>{name}</h2>
             </Link>
-            <button onClick={() => deleteStudent(student.id)}>Delete</button>
+            <button style={{cursor:"pointer", width:"100px", margin:"10px", backgroundColor:"black", color:"white", borderRadius:"30px", padding:"10px"}} onClick={() => deleteStudent(student.id)}>Delete</button>
             <Link to={`/editstudent/${student.id}`}>
-              <button>Edit Student</button>
+              <button style={{cursor:"pointer", width:"100px", margin:"10px", backgroundColor:"black", color:"white", borderRadius:"30px", padding:"10px"}}>Edit Student</button>
             </Link>
             {campusId && campusId !== null && ( // Check if campusId has a value
             <Link to={{
@@ -44,15 +48,11 @@ const AllStudentsView = (props) => {
               <button>Enroll Student</button>
             </Link>
             )}
-            <hr />
           </div>
         );
       }
       )}
       <br />
-      <Link to={`/newstudent`}>
-        <button>Add New Student</button>
-      </Link>
       <br /><br />
     </div>
   );

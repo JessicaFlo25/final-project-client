@@ -24,7 +24,7 @@ class NewStudentContainer extends Component {
       email: "",
       imageurl: "",
       gpa: null, 
-      campusid: null,
+      campusId: null,
       redirect: false, 
       redirectId: null
     };
@@ -47,7 +47,7 @@ class NewStudentContainer extends Component {
         email: this.state.email,
         imageurl: this.state.imageurl,
         gpa: this.state.gpa,
-        campusid: this.state.campusid
+        campusId: this.state.campusId
     };
     
     // Add new student in back-end database
@@ -59,8 +59,8 @@ class NewStudentContainer extends Component {
       lastname: "",
       email: "", // Reset email field
       imageurl: "", // Reset imageURL field
-      gpa: null, // Reset gpa field
-      campusid: null, 
+      gpa: 0.0, // Reset gpa field
+      campusId: null, 
       redirect: true, 
       redirectId: newStudent.id
     });

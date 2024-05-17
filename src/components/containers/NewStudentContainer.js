@@ -57,9 +57,9 @@ class NewStudentContainer extends Component {
     this.setState({
       firstname: "", 
       lastname: "",
-      email: "", // Reset email field
-      imageurl: "", // Reset imageURL field
-      gpa: 0.0, // Reset gpa field
+      email: "",
+      imageurl: "", 
+      gpa: 0.0, 
       campusId: null, 
       redirect: true, 
       redirectId: newStudent.id

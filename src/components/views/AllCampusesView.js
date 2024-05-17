@@ -5,22 +5,20 @@ The Views component is responsible for rendering web page with data provided by 
 It constructs a React component to display all campuses.
 ================================================== */
 import PropTypes from "prop-types";
-import Button from '@material-ui/core/Button';
 import { Link } from "react-router-dom";
 
 const AllCampusesView = (props) => {
   // If there is no campus, display a message.
   if (!props.allCampuses.length) {
     return (
-    <div style={{paddingTop:"1em"}}>
-      <p>There are no campuses.</p>
-      <Link to={`newcampus`}>
-        <Button style={{color:"white", backgroundColor:"grey"}}>Add New Campus</Button>
-      </Link>
-    </div>
-    );
+      <div>
+        <div>There are no campuses.</div>
+        <Link to={`/newcampus`}>
+          <button>Add New Campus</button>
+        </Link>
+      </div>
+    )
   }
-
 
   // If there is at least one campus, render All Campuses view 
   return (
@@ -32,21 +30,22 @@ const AllCampusesView = (props) => {
           <Link to={`/campus/${campus.id}`}>
             <h2>{campus.name}</h2>
           </Link>
-          <img
-            src={campus.imageurl || "https://www.zillowstatic.com/bedrock/app/uploads/sites/26/shutterstock_262043447-dedc70.jpg"}  
-            style={{ maxWidth: '100%', maxHeight: '100px' }}  
-          />
+          <img src={campus.imageURL} style={{ width: '50%', height: 'auto' }}></img>
           <h4>campus id: {campus.id}</h4>
           <p>{campus.address}</p>
           <p>{campus.description}</p>
-          <hr/>
+          <button onClick={() => props.deleteCampus(campus.id)}>Delete</button>
+          <Link to={`/editcampus/${campus.id}`}>
+            <button>Edit Campus</button>
+          </Link>
+          <hr />
         </div>
       ))}
-      <br/>
+      <br />
       <Link to={`/newcampus`}>
         <button>Add New Campus</button>
       </Link>
-      <br/><br/>
+      <br /><br />
     </div>
   );
 };

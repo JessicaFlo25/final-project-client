@@ -5,17 +5,16 @@ The Views component is responsible for rendering web page with data provided by 
 It constructs a React component to display the all students view page.
 ================================================== */
 import { Link } from "react-router-dom";
-import Button from '@material-ui/core/Button';
 
 const AllStudentsView = (props) => {
-  const {students, deleteStudent} = props;
+  const {students, deleteStudent, campusId} = props;
   // If there is no student, display a message
   if (!students.length) {
     return (
-    <div style={{paddingTop:"1em"}}>
+      <div>
       <p>There are no students.</p>
       <Link to={`newstudent`}>
-        <Button style={{color:"blue", backgroundColor:"brown"}}>Add New Student</Button>
+        <button>Add New Student</button>
       </Link>
     </div>
     );
@@ -27,30 +26,34 @@ const AllStudentsView = (props) => {
       <h1>All Students</h1>
 
       {students.map((student) => {
-          let name = student.firstname + " " + student.lastname;
-          return (
-            <div key={student.id}>
-              <Link to={`/student/${student.id}`}>
-                <h2>{name}</h2>
-              </Link>
-              <img
-                src={student.imageurl || "https://static1.cbrimages.com/wordpress/wp-content/uploads/2020/11/Spongebob-Sandy.png"}  
-                style={{ maxWidth: '100%', maxHeight: '100px', borderRadius:'20%', height:'auto', maxWidth:'100%' }} 
-              />
-              <br/>
-              <br/>
-              <hr/>
-              <Button style={{color:"blue", backgroundColor:"brown"}} onClick={() => deleteStudent(student.id)}>Delete</Button>
-              <hr/>
-            </div>
-          );
-        }
+        let name = student.firstname + " " + student.lastname;
+        return (
+          <div key={student.id}>
+            <Link to={`/student/${student.id}`}>
+              <h2>{name}</h2>
+            </Link>
+            <button onClick={() => deleteStudent(student.id)}>Delete</button>
+            <Link to={`/editstudent/${student.id}`}>
+              <button>Edit Student</button>
+            </Link>
+            {campusId && campusId !== null && ( // Check if campusId has a value
+            <Link to={{
+              pathname: `/editstudent/${student.id}`,
+              query: {campusId}
+              }}>
+              <button>Enroll Student</button>
+            </Link>
+            )}
+            <hr />
+          </div>
+        );
+      }
       )}
-      <br/>
+      <br />
       <Link to={`/newstudent`}>
-        <Button style={{color:"blue", backgroundColor:"brown"}}>Add New Student</Button>
+        <button>Add New Student</button>
       </Link>
-      <br/><br/>
+      <br /><br />
     </div>
   );
 };
